@@ -1,60 +1,47 @@
-# K.I.T.T.: The Retro-Futuristic Voice Assistant
+# KITT
 
-Saved 15 Aug 2026 for tomorrow. Do not start this until Adele opens a new chat and asks to begin.
+Parked 16 Aug 2026. For Adele’s phone first. Simple free App Store version is welcome when she asks. Do not start until she opens `Studio/KITT` in a fresh chat.
 
-## Role
+## Why it exists
 
-Frontend Engineer & Retro-UI Specialist
+Everybody Adele’s age, and about ten years younger, wishes KITT was real. The Lovable skin makes her happy. That look is the point.
 
-## Task
+It started on a run. Good thoughts. Cannot write. Will not journal. Will talk. Agent Cooper to Diane on the dictaphone, except it actually writes it down. No audio file. Text somewhere she can find later.
 
-Polish and build upon the existing K.I.T.T. working prototype. Upgrade the visual skin to the 80s sci-fi aesthetic and add lightweight voice feedback.
+Adele used to work in radio. The back room was the racks room. Carts, wires, flashing lights. She loved it.
 
-## Core constraints
+16 Aug 2026, Adele: she wants this on the fly. Screen stays on. Voice notes land somewhere and get sorted. Cursor sees the backend and decides what to action. A simple free version for the store is the first public Kit. People who follow her will want it. Monetise later. Showing up is the point.
 
-### Aesthetic
+## The three red buttons (three prototypes)
 
-Deep obsidian black background (`#050505` or `#070707`) paired with high-contrast, glowing red LED visual elements.
+In this order. Do not invent a fourth.
 
-Map those colours to semantic tokens in the web UI (`--bg`, `--card`, `--ink`, `--muted`, `--faint`, `--line`, plus a red LED token). Do not sprinkle one-off hex through views.
+1. **Normal Cruise.** Talk to transcription. That is all. Cooper / Diane.
+2. **Auto Cruise.** The base Xcode app already made. Keep that working. Put this Lovable skin on it. The Lovable skin is gorgeous and does not work properly. The Xcode side buttons already map right. Use that wiring.
+3. **Pursuit Mode.** The smart one. High. Smart-sort memories. Talk-back is optional. Adele does not need KITT to speak. Dictation on the page is enough. If it talks later, cute. Not required.
 
-### The visualizer
+## Racks Room
 
-A central 3-column vertical LED bar visualizer that dynamically reacts to audio input states: listening, processing, speaking.
+Saved memories are tapes. Cartridges in a stack. Reference photo: `Racks-Room-VHS-reference.png` (Adele’s VHS spines: handwritten labels, mixed marker colours, rainbow stripes).
 
-### Transcription and vault
+Each memory is one tape. Slightly different label colour from the smart sort. Play is reading the text, not playing an audio file.
 
-Live speech-to-text transcription streaming directly into a retro transcript terminal. Logs save automatically into local memory vault cards.
+Lovable already has a Racks Room screen and “tapes.” It currently thinks in voice-memo files. Change that to text tapes.
 
-### Voice output
+## Watch
 
-A lightweight text-to-speech toggle using the browser's native speech synthesis (`window.speechSynthesis`) so K.I.T.T. can speak confirmation messages when notes are logged. Keep all logic local and self-contained. No backend, auth, or accounts.
+If we can, the Apple Watch glows red the same way. Later. Not a blocker.
 
-## Existing prototype to find first
+## Already made
 
-Do not start a second product. Find the working prototype, then skin and extend it.
+- Lovable skin on lovable.dev (K I T, Normal / Auto / Pursuit, Console, Smart Kit).
+- Native Xcode pass. Side lights work there. Find it. Do not start a second KITT.
+- Retro Journal pieces: `KITTEqualizerView.swift`, `KittVoice.swift`.
 
-Native KITT pieces already live in Retro Journal (iCloud, not this folder):
+## Do not add
 
-- `KITTEqualizerView.swift`: 3-column LED bars, listening vs speaking (scanner) states
-- `KittVoice.swift`: local speech synthesis
-
-This brief is a web polish pass (browser STT, `speechSynthesis`, local vault cards). Tomorrow's chat should locate the current web prototype before rebuilding anything.
-
-## Punch list for the next chat
-
-1. File, Open Folder on `Studio/KITT`.
-2. Start a fresh chat there.
-3. Find the existing working prototype and park or copy only what this app needs into this folder.
-4. Skin: obsidian background, glowing red LEDs, retro transcript terminal, vault cards.
-5. Wire the 3-column visualizer to listening / processing / speaking.
-6. Stream live transcription into the terminal. Auto-save logs to local vault cards.
-7. Add a TTS toggle with `window.speechSynthesis` for note-logged confirmations.
+A new voice-memo engine. Cloud-first audio. A second skin. A paid wall on the first public version.
 
 ## How to start
 
-When ready on this Mac:
-
-1. File → Open Folder on `Studio/KITT`.
-2. Start a fresh chat there.
-3. Paste: "Read Brief.md and begin the KITT polish pass."
+File → Open Folder on `Studio/KITT`. Fresh chat. Paste: "Read Brief.md. Skin from Lovable. Brain from Xcode. Normal Cruise is talk-to-text. Racks Room is the VHS stack."
