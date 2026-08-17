@@ -1,0 +1,9 @@
+# Xcode
+xcuserdata/
+*.xccheckout
+*.moved-aside
+DerivedData/
+*.hmap
+
+# API keys / secrets — never commit
+RetroJournal/Secrets.swift
