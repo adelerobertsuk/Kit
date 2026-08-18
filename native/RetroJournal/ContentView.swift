@@ -68,11 +68,13 @@ struct ContentView: View {
     // MARK: - Header
 
     private var header: some View {
-        VStack(spacing: 10) {
-            Text("K . I . T . T .")
+        VStack(spacing: 14) {
+            Text("K I T")
                 .font(.system(.title2, design: .monospaced, weight: .bold))
                 .foregroundColor(.white.opacity(0.92))
-                .tracking(4)
+                .tracking(8)
+
+            chairPicker
 
             HStack(spacing: 14) {
                 grille
@@ -81,6 +83,52 @@ struct ContentView: View {
             }
         }
         .padding(.top, 8)
+    }
+
+    private var chairPicker: some View {
+        HStack(spacing: 8) {
+            ForEach(Chair.allCases) { seat in
+                let active = conversation.chair == seat
+                Button {
+                    conversation.setChair(seat)
+                } label: {
+                    VStack(spacing: 3) {
+                        Text(seat.title)
+                            .font(.system(.footnote, design: .monospaced, weight: .bold))
+                            .tracking(2)
+                        Text(seat.blurb)
+                            .font(.system(size: 9, weight: .medium, design: .monospaced))
+                            .tracking(1)
+                    }
+                    .foregroundColor(active ? Color(red: 0.12, green: 0.04, blue: 0.04) : Color.red.opacity(0.45))
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 12)
+                    .background(
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .fill(active
+                                ? Color(red: 0.85, green: 0.12, blue: 0.08)
+                                : Color.white.opacity(0.04))
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .stroke(active ? Color.red.opacity(0.7) : Color.white.opacity(0.08), lineWidth: 1)
+                    )
+                    .shadow(color: active ? Color.red.opacity(0.35) : .clear, radius: 10)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("\(seat.title) in the seat")
+                .accessibilityAddTraits(active ? .isSelected : [])
+            }
+        }
+        .padding(6)
+        .background(Color.black.opacity(0.45))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .stroke(Color.white.opacity(0.08), lineWidth: 1)
+        )
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel("Who is in the seat")
     }
 
     private var grille: some View {
@@ -131,7 +179,7 @@ struct ContentView: View {
         .contentShape(Rectangle())
         .onTapGesture { conversation.toggleTalk() }
         .accessibilityAddTraits(.isButton)
-        .accessibilityLabel(speechManager.isListening ? "Stop talking to KITT" : "Talk to KITT")
+        .accessibilityLabel(speechManager.isListening ? "Stop talking to \(conversation.chair.title)" : "Talk to \(conversation.chair.title)")
     }
 
     private var status: (text: String, color: Color) {
@@ -196,10 +244,13 @@ struct ContentView: View {
             return (speechManager.liveTranscript.isEmpty ? "I'm listening..." : speechManager.liveTranscript, .red.opacity(0.9))
         }
         switch conversation.state {
-        case .thinking: return ("kitt is thinking...", .orange)
-        case .speaking: return ("kitt is speaking...", .orange)
+        case .thinking: return ("kit is thinking...", .orange)
+        case .speaking: return ("kit is speaking...", .orange)
         case .saved: return ("saved to memory bank.", .cyan)
-        case .idle: return ("ready when you are.", .white.opacity(0.4))
+        case .idle:
+            return conversation.chair == .diane
+                ? ("diane is in the seat. talk. she writes it down.", .white.opacity(0.4))
+                : ("kit is in the seat. ready when you are.", .white.opacity(0.4))
         }
     }
 
@@ -356,7 +407,7 @@ struct ContentView: View {
 
     private func entryRow(_ entry: JournalEntry) -> some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text("\(entry.isMarker ? "★ MOMENT" : (entry.isFromAI ? "KITT" : "YOU")) · \(dateFormatter.string(from: entry.timestamp))")
+            Text("\(entry.isMarker ? "★ MOMENT" : (entry.isFromAI ? "KIT" : "YOU")) · \(dateFormatter.string(from: entry.timestamp))")
                 .font(.system(.caption2, design: .monospaced))
                 .foregroundColor(entry.isMarker ? .yellow.opacity(0.9) : .orange.opacity(0.8))
             if !entry.isMarker {

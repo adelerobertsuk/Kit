@@ -20,6 +20,10 @@ final class KittVoice: NSObject, AVSpeechSynthesizerDelegate {
         synthesizer.speak(utterance)
     }
 
+    func stop() {
+        synthesizer.stopSpeaking(at: .immediate)
+    }
+
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         onFinishSpeaking?()
     }

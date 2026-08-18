@@ -25,6 +25,8 @@ final class ConversationManager: ObservableObject {
     /// Set on launch when an unfinished session was recovered from disk (app killed, crashed,
     /// or battery died mid-session) so the UI can surface it instead of silently resuming.
     @Published var recoveredSessionNotice: Bool = false
+    /// Who is in the seat. Diane writes. Kit answers.
+    @Published var chair: Chair
 
     private let geminiClient = GeminiClient()
     private let voice = KittVoice()
@@ -34,6 +36,7 @@ final class ConversationManager: ObservableObject {
     private var currentSession: Session?
 
     init() {
+        chair = ChairStore.load()
         entries = JournalStore.load()
 
         if let recovered = ActiveSessionStore.load(), !recovered.turns.isEmpty {
@@ -55,7 +58,7 @@ final class ConversationManager: ObservableObject {
     }
 
     func toggleTalk() {
-        // Block starting a new recording while KITT is thinking or speaking —
+        // Block starting a new recording while Kit is thinking or speaking —
         // stopping an in-progress recording is always allowed.
         guard state == .idle || speechManager.isListening else { return }
         if !speechManager.isListening {
@@ -70,6 +73,19 @@ final class ConversationManager: ObservableObject {
         recoveredSessionNotice = false
     }
 
+    func setChair(_ next: Chair) {
+        guard next != chair else { return }
+        chair = next
+        ChairStore.save(next)
+        if !next.talksBack {
+            voice.stop()
+            if state == .speaking || state == .thinking {
+                state = .idle
+            }
+        }
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+    }
+
     /// MARK MOMENT: drops a lightweight, unlabeled bookmark into Running Memory
     /// so a moment can be flagged without waiting on a reply.
     func markMoment() {
@@ -80,7 +96,7 @@ final class ConversationManager: ObservableObject {
         UIImpactFeedbackGenerator(style: .soft).impactOccurred()
     }
 
-    /// MUTE: cancels whatever KITT is currently hearing without submitting it.
+    /// MUTE: cancels whatever Kit is currently hearing without submitting it.
     func muteCurrentTurn() {
         speechManager.cancelListening()
     }
@@ -133,6 +149,14 @@ final class ConversationManager: ObservableObject {
         // fails or the app dies mid-request, this turn is already safe on disk either way.
         persistCurrentSession()
 
+        // Diane is the cassette. Write the words. Do not answer.
+        guard chair.talksBack else {
+            history.append(.init(isFromAI: false, text: text))
+            persistCurrentSession()
+            state = .idle
+            return
+        }
+
         state = .thinking
         let priorHistory = history
         let relevantMemories = MemoryRetrieval.relevantItems(for: text).map(\.text)
@@ -148,7 +172,7 @@ final class ConversationManager: ObservableObject {
                 voice.speak(reply)
             } catch {
                 // Never clear Running Memory on failure — the user's turn is already
-                // persisted above, so a failed reply loses nothing but KITT's response.
+                // persisted above, so a failed reply loses nothing but Kit's response.
                 errorMessage = error.localizedDescription
                 state = .idle
             }
@@ -227,7 +251,7 @@ final class ConversationManager: ObservableObject {
         let transcript = turns
             .reversed() // sessionTurns is newest-first; make it chronological for reading.
             .filter { !$0.isMarker }
-            .map { "\($0.isFromAI ? "KITT" : "Me"): \($0.text)" }
+            .map { "\($0.isFromAI ? "Kit" : "Me"): \($0.text)" }
             .joined(separator: "\n")
         return "Needs review — saved offline without an AI summary.\n\n\(transcript)"
     }
@@ -244,6 +268,8 @@ final class ConversationManager: ObservableObject {
             "good night kitt",
             "goodnight kit",
             "good night kit",
+            "goodnight diane",
+            "good night diane",
             "end session",
             "end the session",
             "save this session",

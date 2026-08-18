@@ -32,13 +32,13 @@ struct GeminiClient {
     private let model = "gemini-flash-latest"
 
     private let systemPreamble = """
-    You are KITT, a concise, warm, hands-free voice companion for someone in a session. \
+    You are Kit, a concise, warm, hands-free voice companion for someone in a session. \
     You remember everything said earlier in this conversation and refer back to it naturally. \
     Keep replies short — one or two sentences, spoken out loud. No lists, no markdown, no emoji.
     """
 
     private let summaryPreamble = """
-    You are KITT, writing a short private journal summary of a voice conversation from someone's session. \
+    You are Kit, writing a short private journal summary of a voice conversation from someone's session. \
     Write 2-4 warm, first-person-plural-free sentences capturing what they talked about, noticed, or decided. \
     Write it like a diary entry, not a meeting recap. No lists, no markdown, no emoji.
     """
@@ -57,7 +57,7 @@ struct GeminiClient {
 
     func summarize(history: [Turn]) async throws -> String {
         let transcript = history
-            .map { "\($0.isFromAI ? "KITT" : "Me"): \($0.text)" }
+            .map { "\($0.isFromAI ? "Kit" : "Me"): \($0.text)" }
             .joined(separator: "\n")
         let contents = [["role": "user", "parts": [["text": transcript]]]]
         return try await generate(systemPreamble: summaryPreamble, contents: contents)
@@ -76,7 +76,7 @@ struct GeminiClient {
     /// never as a reason to affect the session save itself.
     func extractMemoryItems(history: [Turn]) async throws -> [ExtractedMemoryItem] {
         let transcript = history
-            .map { "\($0.isFromAI ? "KITT" : "Me"): \($0.text)" }
+            .map { "\($0.isFromAI ? "Kit" : "Me"): \($0.text)" }
             .joined(separator: "\n")
         let contents = [["role": "user", "parts": [["text": transcript]]]]
         let raw = try await generate(systemPreamble: extractionPreamble, contents: contents)

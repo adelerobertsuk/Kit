@@ -19,7 +19,7 @@ struct MemoryCardView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 22) {
             HStack {
-                Text("K . I . T . T .")
+                Text("K I T")
                     .font(.system(.callout, design: .monospaced, weight: .bold))
                     .tracking(3)
                     .foregroundColor(.white.opacity(0.9))
@@ -55,7 +55,7 @@ struct MemoryCardView: View {
             if showsSignature {
                 HStack {
                     Spacer()
-                    Text("Made with KITT")
+                    Text("Made with Kit")
                         .font(.system(.caption2, design: .monospaced, weight: .semibold))
                         .tracking(1)
                         .foregroundColor(.white.opacity(0.4))

@@ -1,15 +1,15 @@
 import MediaPlayer
 
-/// Lets an AirPods stem press (mapped to play/pause) trigger KITT hands-free,
-/// matching the zero-gaze interaction goal. Relies on KITT holding "Now Playing"
-/// status, which iOS grants after KITT's own TTS audio has played — so the very
+/// Lets an AirPods stem press (mapped to play/pause) trigger Kit hands-free,
+/// matching the zero-gaze interaction goal. Relies on Kit holding "Now Playing"
+/// status, which iOS grants after Kit's own TTS audio has played — so the very
 /// first turn of a session still needs the on-screen button.
 final class RemoteControlManager {
     private let commandCenter = MPRemoteCommandCenter.shared()
 
     func start(onTogglePressed: @escaping () -> Void) {
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [
-            MPMediaItemPropertyTitle: "KITT",
+            MPMediaItemPropertyTitle: "Kit",
             MPNowPlayingInfoPropertyPlaybackRate: 0.0
         ]
 

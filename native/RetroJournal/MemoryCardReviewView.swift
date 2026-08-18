@@ -61,7 +61,7 @@ struct MemoryCardReviewView: View {
                     }
 
                     Toggle(isOn: $showsSignature) {
-                        Text("Show \u{201C}Made with KITT\u{201D} signature")
+                        Text("Show \u{201C}Made with Kit\u{201D} signature")
                             .font(.system(.footnote, design: .monospaced))
                             .foregroundColor(.white.opacity(0.75))
                     }
@@ -149,7 +149,7 @@ struct MemoryCardReviewView: View {
         }()
         var text = "\(title.isEmpty ? "Session Memory" : title)\n\(formatter.string(from: entry.timestamp))\n\n\(summary)"
         if showsSignature {
-            text += "\n\nMade with KITT"
+            text += "\n\nMade with Kit"
         }
         return text
     }

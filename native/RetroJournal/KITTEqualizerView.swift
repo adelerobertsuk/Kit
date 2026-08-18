@@ -3,7 +3,7 @@ import SwiftUI
 enum KITTEqualizerStyle {
     /// Bounces with live mic input while KIT is listening.
     case reactive
-    /// KITT-style scanner sweep across the columns while KITT is speaking — decorative, not audio-driven.
+    /// Scanner sweep across the columns while Kit is speaking — decorative, not audio-driven.
     case scanner
 }
 
@@ -42,7 +42,7 @@ struct KITTEqualizerView: View {
         .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
         .shadow(color: .red.opacity(isActive ? 0.2 : 0), radius: 18)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(isActive ? "KITT voice activity" : "KITT voice box idle")
+        .accessibilityLabel(isActive ? "Kit voice activity" : "Kit voice box idle")
         .accessibilityValue(isActive ? "Active" : "Inactive")
         .onChange(of: level) { _, newLevel in
             guard style == .reactive else { return }

@@ -56,7 +56,7 @@ enum MemoryItemStore {
 
 /// Surfaces past MemoryItems relevant to what the user just said, so a later session can
 /// recall them without the user repeating themselves. Local keyword overlap only — no
-/// embeddings, no network call — the smallest thing that lets KITT say "you mentioned
+/// embeddings, no network call — the smallest thing that lets Kit say "you mentioned
 /// wanting oat milk" days later. Revisit if recall quality needs improving once there's
 /// real multi-session usage to evaluate against.
 enum MemoryRetrieval {
