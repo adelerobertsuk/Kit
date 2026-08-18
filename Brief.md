@@ -2,13 +2,15 @@
 
 Parked 16 Aug 2026. Updated 18 Aug, morning. For Adele’s phone first. Do not start until she opens `Studio/Kit` in a fresh chat. Not the 8-Bit Dash chat.
 
-**One home:** this folder. Not `Studio/KITT`. Not `KITT 2`. Native Xcode is `native/`. Old briefs, Running Memory, and the name map are in `archive/`. Listing Kit is App Store pages for other apps. Leave it. Diane is Kate’s cassette. Leave it.
+**One home:** this folder. Not `Studio/KITT`. Not `KITT 2`. Native Xcode is `native/`. Old briefs, Running Memory, and the name map are in `archive/`. Listing Kit is App Store pages for other apps. Leave it.
+
+**Two products, not one.** Diane the app lives in `Studio/Diane`. That is Kate’s morning-pages cassette. Keep making it. Do not build it from a Kit chat. Kit is Adele’s app. Unique to her. If it works, it is just called Kit. Diane mode inside Kit is only the dictaphone seat: silent talk-to-text. Same job as Diane the app, not the same product.
 
 **The name is Kit.** One T. K-I-T. Folder, Store, wordmark, how she says it. The TV car is two T. That is the feeling, not the spelling. KIIT was a trademark try. Speech could not say it. Dropped. Old files may still say KITT. Do not copy that into new work.
 
 **Running Memory** is an earlier name for this. The Swift Playground is the template. In the phone app it also means the live walk, words not yet a tape. Same family. Not a second app.
 
-**18 Aug:** Adele talks while she moves. Kate likes Diane in bed. Kit is the running partner. Diane is the cassette. Same family. Two seats.
+**18 Aug:** Adele talks while she moves. Kate likes Diane the app in bed. Kit is Adele’s running partner. Inside Kit, Diane is a mode, not a second product. Same family. Two seats in one car.
 
 ## The chair
 
@@ -18,9 +20,11 @@ Like Cursor’s model picker. Top of Kit is **who is in the seat**. Adele picks 
 
 Do not invent a fourth.
 
-1. **Normal Cruise.** Diane. Talk to text. Cassette. That is all.
-2. **Auto Cruise.** The working Xcode brain. A bit robotic. Keep it.
-3. **Pursuit Mode.** AI in the seat. Talk-back is welcome on a walk. Adele wants a partner outside, not a silent box. Cute, not clingy.
+1. **Normal Cruise.** Diane mode. Silent login. Talk to text. Cassette. That is all.
+2. **Auto Cruise.** Future. The ultimate smart friend. Media, Meta glasses, shopping, more of the world coming in. Not live yet. Keep the button for the feel.
+3. **Pursuit Mode.** Kit in the seat. Responsive talkback on a run or a walk. Cute, not clingy.
+
+**Later, not now:** a Notion companion is welcome. Kit captures on the phone. Notion becomes the desk for life: ideas, tasks, shopping, weekly sense. Adele can learn Notion from pages Kit fills. Do not wire Notion until capture and Racks Room are a daily habit.
 
 ## Why it exists
 
@@ -54,8 +58,8 @@ If we can, the Apple Watch glows red the same way. Later. Not a blocker.
 
 ## Do not add
 
-A new voice-memo engine. Cloud-first audio. A second skin. A paid wall on the first public version.
+A new voice-memo engine. Cloud-first audio. A second skin. A paid wall on the first public version. Notion, Watch, glasses, or audiobook clipping in this pass.
 
 ## How to start
 
-File → Open Folder on `Studio/Kit`. Fresh chat. Paste: "Read Brief.md. Chair is who is in the seat. MEM is memory. Normal Cruise is Diane. Pursuit may talk back on a walk. Racks Room is the VHS stack."
+File → Open Folder on `Studio/Kit`. Fresh chat. Paste: "Read Brief.md. We are in Kit. Review the current native shape, then help me polish Console, Racks Room, and Smart Kit to world-class."
