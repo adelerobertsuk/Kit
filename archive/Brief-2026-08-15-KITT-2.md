@@ -1,0 +1,60 @@
+# K.I.T.T.: The Retro-Futuristic Voice Assistant
+
+Saved 15 Aug 2026 for tomorrow. Do not start this until Adele opens a new chat and asks to begin.
+
+## Role
+
+Frontend Engineer & Retro-UI Specialist
+
+## Task
+
+Polish and build upon the existing K.I.T.T. working prototype. Upgrade the visual skin to the 80s sci-fi aesthetic and add lightweight voice feedback.
+
+## Core constraints
+
+### Aesthetic
+
+Deep obsidian black background (`#050505` or `#070707`) paired with high-contrast, glowing red LED visual elements.
+
+Map those colours to semantic tokens in the web UI (`--bg`, `--card`, `--ink`, `--muted`, `--faint`, `--line`, plus a red LED token). Do not sprinkle one-off hex through views.
+
+### The visualizer
+
+A central 3-column vertical LED bar visualizer that dynamically reacts to audio input states: listening, processing, speaking.
+
+### Transcription and vault
+
+Live speech-to-text transcription streaming directly into a retro transcript terminal. Logs save automatically into local memory vault cards.
+
+### Voice output
+
+A lightweight text-to-speech toggle using the browser's native speech synthesis (`window.speechSynthesis`) so K.I.T.T. can speak confirmation messages when notes are logged. Keep all logic local and self-contained. No backend, auth, or accounts.
+
+## Existing prototype to find first
+
+Do not start a second product. Find the working prototype, then skin and extend it.
+
+Native KITT pieces already live in Retro Journal (iCloud, not this folder):
+
+- `KITTEqualizerView.swift`: 3-column LED bars, listening vs speaking (scanner) states
+- `KittVoice.swift`: local speech synthesis
+
+This brief is a web polish pass (browser STT, `speechSynthesis`, local vault cards). Tomorrow's chat should locate the current web prototype before rebuilding anything.
+
+## Punch list for the next chat
+
+1. File, Open Folder on `Studio/KITT`.
+2. Start a fresh chat there.
+3. Find the existing working prototype and park or copy only what this app needs into this folder.
+4. Skin: obsidian background, glowing red LEDs, retro transcript terminal, vault cards.
+5. Wire the 3-column visualizer to listening / processing / speaking.
+6. Stream live transcription into the terminal. Auto-save logs to local vault cards.
+7. Add a TTS toggle with `window.speechSynthesis` for note-logged confirmations.
+
+## How to start
+
+When ready on this Mac:
+
+1. File → Open Folder on `Studio/KITT`.
+2. Start a fresh chat there.
+3. Paste: "Read Brief.md and begin the KITT polish pass."
