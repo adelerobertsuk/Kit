@@ -2,9 +2,11 @@
 
 Parked 16 Aug 2026. Updated 18 Aug, morning. For Adele’s phone first. Do not start until she opens `Studio/Kit` in a fresh chat. Not the 8-Bit Dash chat.
 
-**One home:** this folder. Not `Studio/KITT`. Not `KITT 2`. Native Xcode is `native/`. Old briefs are in `archive/`. Listing Kit is App Store pages for other apps. Leave it. Diane is Kate’s cassette. Leave it.
+**One home:** this folder. Not `Studio/KITT`. Not `KITT 2`. Native Xcode is `native/`. Old briefs, Running Memory, and the name map are in `archive/`. Listing Kit is App Store pages for other apps. Leave it. Diane is Kate’s cassette. Leave it.
 
-**The name is Kit.** One T. Folder, Store, wordmark, how she says it. The Knight Rider car is the feeling, not the spelling. Old files may still say KITT. Do not copy that into new work.
+**The name is Kit.** One T. K-I-T. Folder, Store, wordmark, how she says it. The TV car is two T. That is the feeling, not the spelling. KIIT was a trademark try. Speech could not say it. Dropped. Old files may still say KITT. Do not copy that into new work.
+
+**Running Memory** is an earlier name for this. The Swift Playground is the template. In the phone app it also means the live walk, words not yet a tape. Same family. Not a second app.
 
 **18 Aug:** Adele talks while she moves. Kate likes Diane in bed. Kit is the running partner. Diane is the cassette. Same family. Two seats.
 
