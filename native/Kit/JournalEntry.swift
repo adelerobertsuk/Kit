@@ -4,6 +4,10 @@ struct JournalEntry: Identifiable, Codable, Equatable {
     let id: UUID
     let timestamp: Date
     var text: String
+    /// The verbatim transcript before TranscriptCleaner tidied it, kept so captured
+    /// speech is never lost to the cleanup pass. Nil when cleaning changed nothing,
+    /// for AI turns, and for tapes saved before this existed.
+    var rawText: String?
     let isFromAI: Bool
     let isMarker: Bool
     /// True for a Memory Bank entry saved from the raw transcript because AI
@@ -17,19 +21,24 @@ struct JournalEntry: Identifiable, Codable, Equatable {
     /// existed or never renamed — falls back to a generic label at display time.
     var title: String?
 
-    init(id: UUID = UUID(), timestamp: Date = Date(), text: String, isFromAI: Bool = false, isMarker: Bool = false, isBasicFallback: Bool = false, sourceSessionID: UUID? = nil, title: String? = nil) {
+    /// Who was in the seat when this tape was filed. Nil on older tapes.
+    var chair: Chair?
+
+    init(id: UUID = UUID(), timestamp: Date = Date(), text: String, rawText: String? = nil, isFromAI: Bool = false, isMarker: Bool = false, isBasicFallback: Bool = false, sourceSessionID: UUID? = nil, title: String? = nil, chair: Chair? = nil) {
         self.id = id
         self.timestamp = timestamp
         self.text = text
+        self.rawText = rawText
         self.isFromAI = isFromAI
         self.isMarker = isMarker
         self.isBasicFallback = isBasicFallback
         self.sourceSessionID = sourceSessionID
         self.title = title
+        self.chair = chair
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id, timestamp, text, isFromAI, isMarker, isBasicFallback, sourceSessionID, title
+        case id, timestamp, text, rawText, isFromAI, isMarker, isBasicFallback, sourceSessionID, title, chair
     }
 
     init(from decoder: Decoder) throws {
@@ -37,18 +46,53 @@ struct JournalEntry: Identifiable, Codable, Equatable {
         id = try container.decode(UUID.self, forKey: .id)
         timestamp = try container.decode(Date.self, forKey: .timestamp)
         text = try container.decode(String.self, forKey: .text)
+        rawText = try container.decodeIfPresent(String.self, forKey: .rawText)
         isFromAI = try container.decode(Bool.self, forKey: .isFromAI)
-        // Older saved sessions predate marker, basic-fallback, source-session, and title fields.
         isMarker = try container.decodeIfPresent(Bool.self, forKey: .isMarker) ?? false
         isBasicFallback = try container.decodeIfPresent(Bool.self, forKey: .isBasicFallback) ?? false
         sourceSessionID = try container.decodeIfPresent(UUID.self, forKey: .sourceSessionID)
         title = try container.decodeIfPresent(String.self, forKey: .title)
+        chair = try container.decodeIfPresent(Chair.self, forKey: .chair)
     }
 
-    /// The Memory Card title if the user has set one, else a stable generic default —
-    /// never blank, so the card and share preview always have something to show.
     var displayTitle: String {
-        title?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false ? title! : "Session Memory"
+        let custom = title?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        if !custom.isEmpty, custom.caseInsensitiveCompare("Session Memory") != .orderedSame {
+            return custom
+        }
+        switch chair {
+        case .diane: return "Diane tape"
+        case .auto: return "Auto Cruise tape"
+        case .kit: return "Kit tape"
+        case nil: return "Session Memory"
+        }
+    }
+
+    var seatLabel: String {
+        switch chair {
+        case .diane: return "DIANE"
+        case .auto: return "AUTO"
+        case .kit: return "KIT"
+        case nil: return tapeFamily.tapeStock
+        }
+    }
+
+    var tapeFamily: TapeFamily {
+        if let kind = MemoryItemStore.dominantKind(for: sourceSessionID) {
+            return kind.family
+        }
+        switch chair {
+        case .diane: return .morningPages
+        case .auto, .kit: return .creative
+        case nil: return .reflection
+        }
+    }
+
+    var durationSeconds: Int {
+        guard let sourceSessionID, let session = SessionArchiveStore.session(withID: sourceSessionID) else {
+            return 0
+        }
+        return Int(session.duration)
     }
 }
 

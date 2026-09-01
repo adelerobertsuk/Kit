@@ -15,6 +15,14 @@ struct Session: Codable {
         let isFromAI: Bool
         let text: String
     }
+
+    var lastActivity: Date {
+        turns.map(\.timestamp).max() ?? startedAt
+    }
+
+    var duration: TimeInterval {
+        max(0, lastActivity.timeIntervalSince(startedAt))
+    }
 }
 
 /// Persists the in-progress session continuously, independent of the

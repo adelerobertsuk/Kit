@@ -16,13 +16,13 @@ Parked 16 Aug 2026. Updated 18 Aug, morning. For Adele’s phone first. Do not s
 
 Like Cursor’s model picker. Top of Kit is **who is in the seat**. Adele picks who she is talking to. Then she talks. MEM on the side lights is memory, not a fourth cruise mode. Claude’s old Xcode voice effects (DJ toys) can live as a treat later. Not required for v1.
 
-## The three levels (already the red buttons)
+## The three levels (the red buttons)
 
-Do not invent a fourth.
+Do not invent a fourth. All three are live now — one Chair seat each.
 
-1. **Normal Cruise.** Diane mode. Silent login. Talk to text. Cassette. That is all.
-2. **Auto Cruise.** Future. The ultimate smart friend. Media, Meta glasses, shopping, more of the world coming in. Not live yet. Keep the button for the feel.
-3. **Pursuit Mode.** Kit in the seat. Responsive talkback on a run or a walk. Cute, not clingy.
+1. **Normal Cruise.** Diane mode. Silent login. Talk to text. Cassette. That is all. No voice reply.
+2. **Auto Cruise.** The lightweight friend. Kit reacts out loud in a sentence or two and keeps you moving. Snappy, not deep. The bigger vision — media, Meta glasses, shopping, more of the world coming in — still lands here later.
+3. **Pursuit Mode.** Kit in the seat. Deep thinking partner on a run or a walk: talks back, works the idea with you, files a debrief with next steps when the session ends. Cute, not clingy.
 
 **Later, not now:** a Notion companion is welcome. Kit captures on the phone. Notion becomes the desk for life: ideas, tasks, shopping, weekly sense. Adele can learn Notion from pages Kit fills. Do not wire Notion until capture and Racks Room are a daily habit.
 
@@ -54,7 +54,7 @@ If we can, the Apple Watch glows red the same way. Later. Not a blocker.
 
 - Lovable skin on lovable.dev (K I T, Normal / Auto / Pursuit, Console, Smart Kit).
 - Native Xcode pass. Side lights work there. Find it. Do not start a second Kit.
-- Retro Journal pieces: `KITTEqualizerView.swift`, `KittVoice.swift`.
+- Kit native pieces: `KITTEqualizerView.swift`, `KittVoice.swift`.
 
 ## Do not add
 

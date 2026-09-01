@@ -1,6 +1,6 @@
 //
-//  RetroJournalApp.swift
-//  RetroJournal
+//  KitApp.swift
+//  Kit
 //
 //  Created by Adele Roberts on 09/08/2026.
 //
@@ -8,7 +8,11 @@
 import SwiftUI
 
 @main
-struct RetroJournalApp: App {
+struct KitApp: App {
+    init() {
+        KitSessionReminder.setup()
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()

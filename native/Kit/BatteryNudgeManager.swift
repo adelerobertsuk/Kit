@@ -37,6 +37,6 @@ final class BatteryNudgeManager: ObservableObject {
         guard device.batteryLevel <= lowBatteryThreshold else { return }
 
         let percent = Int((device.batteryLevel * 100).rounded())
-        nudgeMessage = "Battery's at \(percent)% — might be worth wrapping up this session soon."
+        nudgeMessage = "Battery's at \(percent)%. Might be worth wrapping up this session soon."
     }
 }

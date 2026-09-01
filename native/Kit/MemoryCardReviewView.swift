@@ -14,6 +14,7 @@ struct MemoryCardReviewView: View {
     @State private var showsSignature = true
     @State private var shareImage: UIImage?
     @State private var isPresentingShareSheet = false
+    private var dominantKind: MemoryItemKind? { MemoryItemStore.dominantKind(for: entry.sourceSessionID) }
 
     init(entry: JournalEntry, onSave: @escaping (_ title: String, _ summary: String) -> Void) {
         self.entry = entry
@@ -58,6 +59,21 @@ struct MemoryCardReviewView: View {
                             .padding(8)
                             .background(Color.white.opacity(0.06))
                             .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                    }
+
+                    if let dominantKind {
+                        HStack(spacing: 8) {
+                            Text(dominantKind.tapeCode)
+                                .font(.system(.caption2, design: .monospaced, weight: .bold))
+                                .foregroundColor(.yellow)
+                            Text(dominantKind.reportLabel)
+                                .font(.system(.caption2, design: .monospaced, weight: .medium))
+                                .foregroundColor(.white.opacity(0.72))
+                        }
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 10)
+                        .background(Color.white.opacity(0.06))
+                        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                     }
 
                     Toggle(isOn: $showsSignature) {

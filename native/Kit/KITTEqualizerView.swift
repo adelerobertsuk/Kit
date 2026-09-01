@@ -11,13 +11,18 @@ struct KITTEqualizerView: View {
     let level: Float
     let isActive: Bool
     var style: KITTEqualizerStyle = .reactive
+    /// When false, only the LED bars render so the console can sit them in its own well.
+    var showsChrome: Bool = true
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var columnLevels: [Float] = [0, 0, 0]
     @State private var scannerTask: Task<Void, Never>?
 
     // Center column runs a few segments taller than the sides — the "hero" column.
-    private let segmentCounts = [13, 16, 13]
+    private var barWidth: CGFloat { showsChrome ? 28 : 24 }
+    private var barHeight: CGFloat { showsChrome ? 6 : 5 }
+    private var barGap: CGFloat { showsChrome ? 3 : 2.4 }
+    private var columnGap: CGFloat { showsChrome ? 12 : 10 }
     private let scannerPattern: [[Float]] = [
         [1.0, 0.35, 0.15],
         [0.5, 1.0, 0.5],
@@ -26,24 +31,30 @@ struct KITTEqualizerView: View {
     ]
 
     var body: some View {
-        HStack(alignment: .bottom, spacing: 12) {
-            ForEach(0..<3, id: \.self) { index in
-                ledColumn(level: columnLevels[index], segmentCount: segmentCounts[index])
+        Group {
+            if showsChrome {
+                barStack(counts: [16, 20, 16])
+                    .padding(.horizontal, 18)
+                    .padding(.vertical, 14)
+                    .frame(height: 154)
+                    .background(KitPalette.well)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 18, style: .continuous)
+                            .stroke(KitPalette.line, lineWidth: 1)
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+                    .shadow(color: KitPalette.ledRed.opacity(isActive ? 0.2 : 0), radius: 18)
+            } else {
+                GeometryReader { geo in
+                    barStack(counts: segmentCounts(forHeight: geo.size.height))
+                        .frame(width: geo.size.width, height: geo.size.height, alignment: .bottom)
+                }
             }
         }
-        .padding(.horizontal, 18)
-        .padding(.vertical, 14)
-        .frame(height: 154)
-        .background(Color(red: 0.035, green: 0.035, blue: 0.04))
-        .overlay(
-            RoundedRectangle(cornerRadius: 18, style: .continuous)
-                .stroke(Color.white.opacity(0.08), lineWidth: 1)
-        )
-        .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
-        .shadow(color: .red.opacity(isActive ? 0.2 : 0), radius: 18)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(isActive ? "Kit voice activity" : "Kit voice box idle")
         .accessibilityValue(isActive ? "Active" : "Inactive")
+        .onAppear { refreshAnimation(active: isActive) }
         .onChange(of: level) { _, newLevel in
             guard style == .reactive else { return }
             updateColumns(for: newLevel)
@@ -55,6 +66,21 @@ struct KITTEqualizerView: View {
             refreshAnimation(active: isActive)
         }
         .onDisappear { scannerTask?.cancel() }
+    }
+
+    private func barStack(counts: [Int]) -> some View {
+        HStack(alignment: .bottom, spacing: columnGap) {
+            ForEach(0..<3, id: \.self) { index in
+                ledColumn(level: columnLevels[index], segmentCount: counts[index])
+            }
+        }
+    }
+
+    private func segmentCounts(forHeight height: CGFloat) -> [Int] {
+        let unit = barHeight + barGap
+        let center = max(10, Int(floor((height + barGap) / unit)))
+        let side = max(8, center - 3)
+        return [side, center, side]
     }
 
     private func refreshAnimation(active: Bool) {
@@ -75,7 +101,7 @@ struct KITTEqualizerView: View {
     }
 
     private func startScannerLoop() {
-        scannerTask = Task {
+        scannerTask = Task { @MainActor in
             var phase = 0
             while !Task.isCancelled {
                 animate { columnLevels = scannerPattern[phase % scannerPattern.count] }
@@ -88,13 +114,13 @@ struct KITTEqualizerView: View {
     private func ledColumn(level: Float, segmentCount: Int) -> some View {
         let litCount = isActive ? max(1, Int(ceil(level * Float(segmentCount)))) : 0
 
-        return VStack(spacing: 3) {
+        return VStack(spacing: barGap) {
             ForEach(Array((0..<segmentCount).reversed()), id: \.self) { segment in
                 let isLit = segment < litCount
                 RoundedRectangle(cornerRadius: 1.5, style: .continuous)
                     .fill(segmentFill(isLit: isLit))
-                    .frame(width: 28, height: 7)
-                    .shadow(color: .red.opacity(isLit ? 0.75 : 0), radius: isLit ? 4 : 0)
+                    .frame(width: barWidth, height: barHeight)
+                    .shadow(color: KitPalette.ledRed.opacity(isLit ? 0.75 : 0), radius: isLit ? 4 : 0)
             }
         }
     }
@@ -102,8 +128,8 @@ struct KITTEqualizerView: View {
     private func segmentFill(isLit: Bool) -> LinearGradient {
         LinearGradient(
             colors: isLit
-                ? [Color(red: 1, green: 0.08, blue: 0.03), Color(red: 0.72, green: 0.01, blue: 0)]
-                : [Color.red.opacity(0.16), Color.red.opacity(0.07)],
+                ? [KitPalette.ledHot, KitPalette.ledRed]
+                : [KitPalette.ledRed.opacity(0.18), KitPalette.ledRed.opacity(0.08)],
             startPoint: .top,
             endPoint: .bottom
         )

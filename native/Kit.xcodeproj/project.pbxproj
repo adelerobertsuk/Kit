@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		7FEF3EA5302923D200471479 /* RetroJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RetroJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FEF3EA5302923D200471479 /* Kit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		7FEF3EA7302923D200471479 /* RetroJournal */ = {
+		7FEF3EA7302923D200471479 /* Kit */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = RetroJournal;
+			path = Kit;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,7 +32,7 @@
 		7FEF3E9C302923D200471479 = {
 			isa = PBXGroup;
 			children = (
-				7FEF3EA7302923D200471479 /* RetroJournal */,
+				7FEF3EA7302923D200471479 /* Kit */,
 				7FEF3EA6302923D200471479 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -40,7 +40,7 @@
 		7FEF3EA6302923D200471479 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7FEF3EA5302923D200471479 /* RetroJournal.app */,
+				7FEF3EA5302923D200471479 /* Kit.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7FEF3EA4302923D200471479 /* RetroJournal */ = {
+		7FEF3EA4302923D200471479 /* Kit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7FEF3EB0302923D200471479 /* Build configuration list for PBXNativeTarget "RetroJournal" */;
+			buildConfigurationList = 7FEF3EB0302923D200471479 /* Build configuration list for PBXNativeTarget "Kit" */;
 			buildPhases = (
 				7FEF3EA1302923D200471479 /* Sources */,
 				7FEF3EA2302923D200471479 /* Frameworks */,
@@ -61,13 +61,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				7FEF3EA7302923D200471479 /* RetroJournal */,
+				7FEF3EA7302923D200471479 /* Kit */,
 			);
-			name = RetroJournal;
+			name = Kit;
 			packageProductDependencies = (
 			);
-			productName = RetroJournal;
-			productReference = 7FEF3EA5302923D200471479 /* RetroJournal.app */;
+			productName = Kit;
+			productReference = 7FEF3EA5302923D200471479 /* Kit.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -85,7 +85,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7FEF3EA0302923D200471479 /* Build configuration list for PBXProject "RetroJournal" */;
+			buildConfigurationList = 7FEF3EA0302923D200471479 /* Build configuration list for PBXProject "Kit" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -99,7 +99,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7FEF3EA4302923D200471479 /* RetroJournal */,
+				7FEF3EA4302923D200471479 /* Kit */,
 			);
 		};
 /* End PBXProject section */
@@ -256,6 +256,8 @@
 				DEVELOPMENT_TEAM = FVJG2288UR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Kit;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "KIT listens when you tap Talk to KIT so it can transcribe your voice notes.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "KIT uses speech recognition to turn what you say into text entries.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -268,7 +270,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.adeleroberts.RetroJournal";
+				PRODUCT_BUNDLE_IDENTIFIER = com.adeleroberts.Kit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -290,6 +292,8 @@
 				DEVELOPMENT_TEAM = FVJG2288UR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Kit;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "KIT listens when you tap Talk to KIT so it can transcribe your voice notes.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "KIT uses speech recognition to turn what you say into text entries.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -302,7 +306,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.adeleroberts.RetroJournal";
+				PRODUCT_BUNDLE_IDENTIFIER = com.adeleroberts.Kit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -317,7 +321,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7FEF3EA0302923D200471479 /* Build configuration list for PBXProject "RetroJournal" */ = {
+		7FEF3EA0302923D200471479 /* Build configuration list for PBXProject "Kit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7FEF3EAE302923D200471479 /* Debug */,
@@ -326,7 +330,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7FEF3EB0302923D200471479 /* Build configuration list for PBXNativeTarget "RetroJournal" */ = {
+		7FEF3EB0302923D200471479 /* Build configuration list for PBXNativeTarget "Kit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7FEF3EB1302923D200471479 /* Debug */,

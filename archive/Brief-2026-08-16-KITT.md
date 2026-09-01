@@ -36,7 +36,7 @@ If we can, the Apple Watch glows red the same way. Later. Not a blocker.
 
 - Lovable skin on lovable.dev (K I T, Normal / Auto / Pursuit, Console, Smart Kit).
 - Native Xcode pass. Side lights work there. Find it. Do not start a second KITT.
-- Retro Journal pieces: `KITTEqualizerView.swift`, `KittVoice.swift`.
+- Kit native pieces: `KITTEqualizerView.swift`, `KittVoice.swift` (in `native/Kit/`).
 
 ## Do not add
 

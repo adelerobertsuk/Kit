@@ -32,5 +32,5 @@ dist-ssr
 *.sw?
 
 # Native Gemini key, never commit
-native/RetroJournal/Secrets.swift
+native/Kit/Secrets.swift
 .env

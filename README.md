@@ -19,7 +19,7 @@ Auto Cruise and Pursuit Mode already exist in the Lovable skin. Leave them. Do n
 | Piece | Where it was | Date | Role |
 | --- | --- | --- | --- |
 | Lovable skin | GitHub `adelerobertsuk/retro-voice-grid`, live at retro-voice-grid.lovable.app | 12 Aug (screenshots 16 Aug match) | Console, three cruise buttons, Racks Room, Smart Kit |
-| Claude’s working prototype | iCloud Retro Journal, GitHub `adelerobertsuk/RetroJournal`, Lexar copy | 11 Aug | Xcode brain: mic, equalizer, session save, memory cards |
+| Claude’s working prototype | `native/Kit/`, GitHub `adelerobertsuk/Kit` | 11 Aug | Xcode brain: mic, equalizer, session save, memory cards |
 | Studio brief | `Studio/KITT` | 16 Aug | The three buttons and the VHS racks |
 | Lexar `Downloads/.../KIT` | screenshots only | 11 Aug | Look reference, not code |
 

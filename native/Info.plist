@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Partial Info.plist merged on top of the Xcode-generated one (GENERATE_INFOPLIST_FILE
+  stays YES). Holds keys Xcode has no INFOPLIST_KEY_ build setting for. Kept at the
+  project root, not inside the file-system-synchronised Kit/ group, so Xcode
+  doesn't also try to copy it in as a bundle resource.
+
+  These two expose Documents/ (where "Kit Exports" markdown lands) in the Files app.
+-->
+<plist version="1.0">
+<dict>
+	<key>UIFileSharingEnabled</key>
+	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
+</dict>
+</plist>

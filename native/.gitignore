@@ -6,4 +6,4 @@ DerivedData/
 *.hmap
 
 # API keys / secrets — never commit
-RetroJournal/Secrets.swift
+Kit/Secrets.swift
